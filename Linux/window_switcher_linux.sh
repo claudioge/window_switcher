@@ -1,11 +1,12 @@
 #!/bin/bash
 
-WINDOW_SCALE=1
-BANNED_WINDOW_IDS=("0x04200046" "0x04600046")
-HEADER_OFFSET=38
-BANNED_CLASS="3"
+WINDOW_SCALE=1 # Scaling factor of screen resolution
+BANNED_WINDOW_IDS=() # List of window IDs to check for visibility
+HEADER_OFFSET=38 # # Height of the header bar in pixels
+BANNED_CLASS="2" # Specify which label you are creating screenshots for
 
-ITERATIONS=500
+ITERATIONS=500 # Number of iterations to run the script
+BACKGROUND_DIR="$HOME/Pictures/backgrounds" # Path to the background directory
 
 # Get screen dimensions properly
 screen_dimensions=$(xrandr | grep ' connected' | grep -oP '[0-9]+x[0-9]+' | head -1)
@@ -307,10 +308,10 @@ change_background() {
   backgrounds=()
   while IFS= read -r -d '' file; do
     backgrounds+=("$file")
-  done < <(find "$HOME/Pictures/backgrounds" -type f -print0)
+  done < <(find "$BACKGROUND_DIR" -type f -print0)
 
   if [ ${#backgrounds[@]} -eq 0 ]; then
-    echo "No images found in $HOME/Pictures/backgrounds"
+    echo "No images found in $BACKGROUND_DIR"
     return
   fi
 

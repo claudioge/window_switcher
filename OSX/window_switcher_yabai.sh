@@ -1,11 +1,13 @@
 #!/bin/bash
 
-WINDOW_SCALE=2
-BANNED_WINDOW_IDS=(16282 16274 174)
-HEADER_OFFSET=38
-BANNED_CLASS="2"
+WINDOW_SCALE=2 # Scaling factor of screen resolution
+BANNED_WINDOW_IDS=() # List of window IDs to check for visibility
+HEADER_OFFSET=38 # Height of the header bar in pixels
+BANNED_CLASS="2" # Class label for banned windows
 
-ITERATIONS=500
+ITERATIONS=500 # Number of iterations to run the script
+BACKGROUND_DIR="$HOME/Pictures/backgrounds" # Define the path to the background directory
+
 # Get screen dimensions
 screen_width=$(yabai -m query --displays | jq '.[0].frame.w')
 screen_height=$(yabai -m query --displays | jq '.[0].frame.h')
@@ -236,10 +238,10 @@ change_background() {
 
     while IFS= read -r -d '' file; do
         backgrounds+=("$file")
-    done < <(find "$HOME/Pictures/backgrounds" -type f \( -iname '*.jpg' -o -iname '*.jpeg' -o -iname '*.png' -o -iname '*.tif' -o -iname '*.tiff' -o -iname '*.bmp' \) -print0)
+    done < <(find "$BACKGROUND_DIR" -type f \( -iname '*.jpg' -o -iname '*.jpeg' -o -iname '*.png' -o -iname '*.tif' -o -iname '*.tiff' -o -iname '*.bmp' \) -print0)
 
     if [ ${#backgrounds[@]} -eq 0 ]; then
-        echo "No images found in $HOME/Pictures/backgrounds"
+        echo "No images found in $BACKGROUND_DIR"
         return
     fi
 

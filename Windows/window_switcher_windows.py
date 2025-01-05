@@ -10,16 +10,17 @@ from datetime import datetime
 
 # Configuration
 WINDOW_SCALE = 1
-TARGET_WINDOW_IDS = ["657248", "3869194","4918356","3410846","330934"]  # Specify IDs for target windows to interact with
-BANNED_WINDOW_IDS = ["3869194","330934"]  # Specify IDs for banned windows to monitor
+TARGET_WINDOW_IDS = []  # Specify IDs for target windows to interact with
+BANNED_WINDOW_IDS = []  # List of window IDs to check for visibility
 PADDING = 10  # Space between windows in pixels
-ITERATIONS = 500
-LABEL = 2
+LABEL = 2 # Specify which label you are creating screenshots for
+
+ITERATIONS = 500 # Number of iterations to run the script
 
 # Directories for screenshots and logs
-screenshot_dir = "C:/Users/DioG/Desktop/test/email/images"
-text_dir = "C:/Users/DioG/Desktop/test/email/labels"
-background_dir = "C:/Users/DioG/Pictures/Backgrounds"
+screenshot_dir = ""
+text_dir = ""
+background_dir = ""
 os.makedirs(screenshot_dir, exist_ok=True)
 os.makedirs(text_dir, exist_ok=True)
 
